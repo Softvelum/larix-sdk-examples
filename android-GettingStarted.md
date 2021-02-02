@@ -10,7 +10,6 @@ Download and install Larix SDK for Android, set up your Android Studio developme
 2. [Download and install the tools](#download-and-install-the-tools)
 3. [Configure an Android Studio project to use the Larix SDK](#configure-an-android-studio-project-to-use-the-larix-sdk)
 4. [Practice with the SDK sample app](#practice-with-the-sdk-sample-app)
-5. [More resources](#more-resources)
 
 ## Requirements for Larix SDK for Android
 
