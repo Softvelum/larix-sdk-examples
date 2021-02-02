@@ -9,7 +9,7 @@ First, create an app project in Android Studio.
 3. In the **Choose your project** window, click **Empty Activity** on the **Phone and Tablet** tab.
 4. In the Configure your project window, replace the Package name with the **com.softvelum.larixfragment**. and then click **Next**.
 5. Select **Java** as the **Langauge**, select a minimum SDK version of API 18 or higher, and then click **Finish**.
-6. Make sure the Larix SDK libraries are installed and the permissions are added to **AndroidManifest.xml** according to the instructions in [Configure an Android Studio project to use the Larix SDK](../GettingStarted.md#configure-an-android-studio-project-to-use-the-larix-sdk).
+6. Make sure the Larix SDK libraries are installed and the permissions are added to **AndroidManifest.xml** according to the instructions in [Configure an Android Studio project to use the Larix SDK](https://github.com/WMSPanel/larix-sdk-examples/blob/main/android-GettingStarted.md#configure-an-android-studio-project-to-use-the-larix-sdk).
 
 ## Add a camera preview holder
 
