@@ -7,7 +7,7 @@ These tutorials are step-by-step guides for customers who subscribed for Larix B
 * [Larix demo](https://github.com/WMSPanel/larix-sdk-examples/tree/main/ios-larix-demo) provides the source code for the guide.
 
 *Android*
-* [GettingStarted](https://github.com/WMSPanel/larix-sdk-examples/blob/main/android-GettingStarted.md) is adocument which is provided as part of Larix Broadcaster SDK for Android. You can read it to see what you get in the SDK package and how you will start using the SDK.
+* [GettingStarted](https://github.com/WMSPanel/larix-sdk-examples/blob/main/android-GettingStarted.md) is a document which is provided as part of Larix Broadcaster SDK for Android. You can read it to see what you get in the SDK package and how you will start using the SDK.
 * [Android Larix step-by-step guide](https://github.com/WMSPanel/larix-sdk-examples/blob/main/android-LarixFragment/StepByStepGuide.md) shows how to create a sample Android app based on Larix streaming library.
 * [LarixFragment](https://github.com/WMSPanel/larix-sdk-examples/tree/main/android-LarixFragment) provides respective source code.
 
