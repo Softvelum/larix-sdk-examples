@@ -1,4 +1,4 @@
-This document is provided as part of Larix Broadcaster SDK for Android. It's provided as a reference for users who plan purchasing the SDK.
+This document is provided as part of Larix Broadcaster SDK for Android. It's shown here as a reference for users who plan purchasing the SDK.
 
 # Download and install Larix SDK for Android
 
