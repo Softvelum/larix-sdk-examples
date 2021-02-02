@@ -12,5 +12,6 @@ These tutorials are step-by-step guides for customers who subscribed for Larix B
 * [LarixFragment](https://github.com/WMSPanel/larix-sdk-examples/tree/main/android-LarixFragment) provides respective source code.
 
 Also, take a look at SDK descriptions with high-level overview of Larix Broadcaster architecture:
-* [iOS SDK description](https://softvelum.com/larix/ios_sdk/)
-* [Android SDK description](https://softvelum.com/larix/android_sdk/)
+* [Larix Broadcaster SDK for iOS](https://softvelum.com/larix/ios_sdk/) description
+* [Larix Broadcaster SDK for Android](https://softvelum.com/larix/android_sdk/) description
+* [Testing procedures](https://github.com/WMSPanel/larix-testing/wiki) used by Softvelum team for apps' quality check
