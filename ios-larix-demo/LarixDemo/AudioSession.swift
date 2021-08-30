@@ -75,9 +75,9 @@ class AudioSession {
     @objc func handleAudioSessionInterruption(notification: Notification) {
         if let value = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? NSNumber, let interruptionType = AVAudioSession.InterruptionType(rawValue: UInt(value.intValue)) {
             switch interruptionType {
-            case AVAudioSessionInterruptionType.began:
+            case .began:
                 deactivateAudioSession()
-            case AVAudioSessionInterruptionType.ended:
+            case .ended:
                 activateAudioSession()
             default:
                 break

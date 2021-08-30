@@ -313,6 +313,8 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
             message = "Disconnected"
             break
             
+        case .timeout:
+            message = NSLocalizedString("Connection timed out. Please check your network connection.", comment: "")
         @unknown default:
             break
         }
@@ -328,7 +330,10 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
         let frame = cameraPreview.frame
         previewLayer?.frame = frame
 
-        let deviceOrientation = UIApplication.shared.statusBarOrientation
+        let mainWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        guard let deviceOrientation = mainWindow?.windowScene?.interfaceOrientation else {
+            return
+        }
         let newOrientation = AVCaptureVideoOrientation(rawValue: deviceOrientation.rawValue) ?? AVCaptureVideoOrientation.portrait
         previewLayer?.connection?.videoOrientation = newOrientation
     }
