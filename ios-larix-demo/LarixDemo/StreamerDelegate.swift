@@ -46,7 +46,7 @@ extension CaptureStatus: LocalizedError {
     }
 }
 
-protocol StreamerAppDelegate: class {
+protocol StreamerAppDelegate: AnyObject {
     func connectionStateDidChange(id: Int32, state: ConnectionState, status: ConnectionStatus, info: [AnyHashable:Any]!)
     func captureStateDidChange(state: CaptureState, status: Error)
 }
