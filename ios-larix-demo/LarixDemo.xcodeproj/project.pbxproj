@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,17 +17,16 @@
 		9DAC6F4025B01B7500FC5397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DAC6F3E25B01B7500FC5397 /* LaunchScreen.storyboard */; };
 		9DAC6F4925B01C3600FC5397 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAC6F4825B01C3600FC5397 /* AudioSession.swift */; };
 		9DAC6F4C25B03E6C00FC5397 /* PermissionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAC6F4B25B03E6C00FC5397 /* PermissionChecker.swift */; };
-		9DACC9E925B9421000EB44B1 /* libmbl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D38C7CA25B17A5400B3E2C6 /* libmbl2.a */; };
-		9DACC9ED25B9425E00EB44B1 /* libsrt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DACC9EC25B9424E00EB44B1 /* libsrt.a */; };
-		9DACC9EE25B9426400EB44B1 /* librist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DACC9EB25B9424E00EB44B1 /* librist.a */; };
 		9DACC9F125B942C000EB44B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DACC9F025B942B700EB44B1 /* libc++.tbd */; };
-		9DACC9F425B9433200EB44B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DACC9F325B9432200EB44B1 /* libcrypto.a */; };
+		9DD146F72812604D0064840D /* libcrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD146F32812604D0064840D /* libcrypto.xcframework */; };
+		9DD146F92812604D0064840D /* libsrt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD146F42812604D0064840D /* libsrt.xcframework */; };
+		9DD146FB2812604D0064840D /* librist.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD146F52812604D0064840D /* librist.xcframework */; };
+		9DD146FD2812604D0064840D /* mbl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD146F62812604D0064840D /* mbl.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9D0E05BE25B6A4B30098D9DB /* StreamerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerDelegate.swift; sourceTree = "<group>"; };
 		9D38C7C025B14F4700B3E2C6 /* Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
-		9D38C7CA25B17A5400B3E2C6 /* libmbl2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmbl2.a; sourceTree = "<group>"; };
 		9DAC6F3025B01B7300FC5397 /* LarixDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LarixDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DAC6F3325B01B7300FC5397 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DAC6F3525B01B7300FC5397 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,10 +37,12 @@
 		9DAC6F4125B01B7500FC5397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DAC6F4825B01C3600FC5397 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		9DAC6F4B25B03E6C00FC5397 /* PermissionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionChecker.swift; sourceTree = "<group>"; };
-		9DACC9EB25B9424E00EB44B1 /* librist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librist.a; sourceTree = "<group>"; };
-		9DACC9EC25B9424E00EB44B1 /* libsrt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsrt.a; sourceTree = "<group>"; };
 		9DACC9F025B942B700EB44B1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		9DACC9F325B9432200EB44B1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		9DD146EF28125F380064840D /* mbl_tcp.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = mbl_tcp.xcframework; sourceTree = "<group>"; };
+		9DD146F32812604D0064840D /* libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libcrypto.xcframework; sourceTree = "<group>"; };
+		9DD146F42812604D0064840D /* libsrt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libsrt.xcframework; sourceTree = "<group>"; };
+		9DD146F52812604D0064840D /* librist.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = librist.xcframework; sourceTree = "<group>"; };
+		9DD146F62812604D0064840D /* mbl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = mbl.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,11 +50,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DACC9E925B9421000EB44B1 /* libmbl2.a in Frameworks */,
-				9DACC9F425B9433200EB44B1 /* libcrypto.a in Frameworks */,
-				9DACC9ED25B9425E00EB44B1 /* libsrt.a in Frameworks */,
+				9DD146FD2812604D0064840D /* mbl.xcframework in Frameworks */,
+				9DD146F72812604D0064840D /* libcrypto.xcframework in Frameworks */,
+				9DD146F92812604D0064840D /* libsrt.xcframework in Frameworks */,
 				9DACC9F125B942C000EB44B1 /* libc++.tbd in Frameworks */,
-				9DACC9EE25B9426400EB44B1 /* librist.a in Frameworks */,
+				9DD146FB2812604D0064840D /* librist.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,11 +64,12 @@
 		9D38C7C925B17A5400B3E2C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9DACC9F325B9432200EB44B1 /* libcrypto.a */,
+				9DD146F32812604D0064840D /* libcrypto.xcframework */,
+				9DD146F52812604D0064840D /* librist.xcframework */,
+				9DD146F42812604D0064840D /* libsrt.xcframework */,
+				9DD146F62812604D0064840D /* mbl.xcframework */,
+				9DD146EF28125F380064840D /* mbl_tcp.xcframework */,
 				9DACC9F025B942B700EB44B1 /* libc++.tbd */,
-				9DACC9EB25B9424E00EB44B1 /* librist.a */,
-				9DACC9EC25B9424E00EB44B1 /* libsrt.a */,
-				9D38C7CA25B17A5400B3E2C6 /* libmbl2.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -333,6 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = BL97U77JF9;
 				INFOPLIST_FILE = LarixDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -343,6 +346,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Softvelum.LarixDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -356,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = BL97U77JF9;
 				INFOPLIST_FILE = LarixDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -366,6 +371,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Softvelum.LarixDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
