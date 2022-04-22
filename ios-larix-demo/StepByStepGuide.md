@@ -6,19 +6,19 @@ In XCode, choose File/New/Project, select iOS/App. On next step, specify Product
 ![New project](screenshots/new_project.png)
 
 On next step, specify project location (XCode will create folder with product name for you).
-Copy SDK headers and proper libmbl2.a library to project directory
+Copy needed .xcframework files to project directory
 
 ## Project settings
-Select project file in XCode Project navigator, then select item in Targets secion. On General tab, scroll down to "Frameworks, Libraries and Embedded Content" section. Add libmbl2.a (click Plus sign below, then choose "Add Files" from "Add Other" drop-down in a bottom, specify libmbl2.a file).
-Depnding on needed protocol support, you can choose either libmbl version with RTMP and RTSP version, or variant with SRT or RIST support.
-For SRT and RIST support you also must add libsrt.a or librist.a accordingly. For SRT you also need libcrypto.a and libc++.tbd 
+Select project file in XCode Project navigator, then select item in Targets secion. On General tab, scroll down to "Frameworks, Libraries and Embedded Content" section. Add mbl.xcframework (click Plus sign below, then choose "Add Files" from "Add Other" drop-down in a bottom, specify mbl.xcframework file).
+Depnding on needed protocol support, you can choose either version with only RTMP and RTSP protocols (mbl\_tcp.xcframework), or variant with SRT or RIST support in addition to RTMP/RTSP (mbl\_srt.xcframework or mbl\_rist.xcframework for one of them or mbl.xcframework for both).
+For SRT and RIST support you also must add libsrt.xcframework or librist.xcframework accordingly. For SRT you also need libcrypto.xcframework and libc++.tbd 
 ![Libraries](screenshots/libraries.png)
 
 
 ### Bridging header
 Create file YourProject-Brigding-Header.h and put following line to it
 
-`#import "StreamerEngineProxy.h"`
+`#import "mbl-iOS/mbl.h"`
 
 
 Then in project settings go to "Build Settings" tab, scroll down to "Swift Compiler - General" and specify above file name in "Objective-C Bridging Header" line. 
