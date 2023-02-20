@@ -113,12 +113,6 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
             streamer?.delegate = self
             try streamer?.startCapture()
 
-            let nc = NotificationCenter.default
-            nc.addObserver(
-                self,
-                selector: #selector(orientationDidChange(notification:)),
-                name: UIDevice.orientationDidChangeNotification,
-                object: nil)
         } catch {
             NSLog("can't start capture: %@", error.localizedDescription)
             canStartCapture = true
@@ -131,9 +125,7 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
 
         streamer?.stopCapture()
         streamer = nil
-        let nc = NotificationCenter.default
-        nc.removeObserver(self, name: UIDevice.orientationDidChangeNotification,
-                          object: nil)
+
     }
     
     //MARK: Start streaming
@@ -191,6 +183,7 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
                 if let preview = previewLayer {
                     cameraPreview.layer.addSublayer(preview)
                 }
+                view.setNeedsLayout()
             }
             
         case .CaptureStateFailed:
@@ -218,10 +211,9 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
     func createConnection(urlTo: String) {
         
         var id: Int32 = -1
-        let url = URL.init(string: urlTo)
-        
-        if let scheme = url?.scheme?.lowercased(), let host = url?.host {
-
+                
+        if let url = URL.init(string: urlTo), let scheme = url.scheme?.lowercased(), let host = url.host {
+            #if MBL
             if scheme.hasPrefix("rtmp") || scheme.hasPrefix("rtsp") {
                 let config = ConnectionConfig()
                 config.uri = url
@@ -238,6 +230,14 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
 
                 id = streamer?.createConnection(config: config) ?? -1
             }
+            #endif
+            #if WEBRTC
+            if id < 0, scheme.hasPrefix("http") {
+                let config = WebRtcConfig()
+                config.uri = url
+                id = streamer?.createConnection(config: config) ?? -1
+            }
+            #endif
         }
         
         if id != -1 {
@@ -247,7 +247,7 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
                                                            urlTo)
             showStatusMessage(message: message)
         }
-        NSLog("SwiftApp::create connection: \(id), \(urlTo)" )
+        NSLog("LarixDeom::create connection: \(id), \(urlTo)" )
     }
     
     func releaseConnection(id: Int32) {
@@ -325,17 +325,17 @@ class ViewController: UIViewController, AudioSessionStateObserver, StreamerAppDe
         stopBroadcast()
     }
     
-    // MARK: Device orientation
-    @objc func orientationDidChange(notification: Notification) {
-        let frame = cameraPreview.frame
-        previewLayer?.frame = frame
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let mainWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
         guard let deviceOrientation = mainWindow?.windowScene?.interfaceOrientation else {
             return
         }
+        let frame = cameraPreview.bounds
+        previewLayer?.frame = frame
+        
         let newOrientation = AVCaptureVideoOrientation(rawValue: deviceOrientation.rawValue) ?? AVCaptureVideoOrientation.portrait
-        previewLayer?.connection?.videoOrientation = newOrientation
+        self.previewLayer?.connection?.videoOrientation = newOrientation
     }
     
     func showStatusMessage(message: String) {
