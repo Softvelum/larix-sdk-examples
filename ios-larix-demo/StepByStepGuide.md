@@ -9,16 +9,21 @@ On next step, specify project location (XCode will create folder with product na
 Copy needed .xcframework files to project directory
 
 ## Project settings
-Select project file in XCode Project navigator, then select item in Targets secion. On General tab, scroll down to "Frameworks, Libraries and Embedded Content" section. Add mbl.xcframework (click Plus sign below, then choose "Add Files" from "Add Other" drop-down in a bottom, specify mbl.xcframework file).
-Depnding on needed protocol support, you can choose either version with only RTMP and RTSP protocols (mbl\_tcp.xcframework), or variant with SRT or RIST support in addition to RTMP/RTSP (mbl\_srt.xcframework or mbl\_rist.xcframework for one of them or mbl.xcframework for both).
-For SRT and RIST support you also must add libsrt.xcframework or librist.xcframework accordingly. For SRT you also need libcrypto.xcframework and libc++.tbd 
+Select project file in XCode Project navigator, then select item in Targets secion. On General tab, scroll down to "Frameworks, Libraries and Embedded Content" section. Add LarixMediaBroadcaster.xcframework (click Plus sign below, then choose "Add Files" from "Add Other" drop-down in a bottom, specify LarixMediaBroadcaster.xcframework file). 
+Depnding on needed protocol support, you can choose either version with only RTMP and RTSP protocols (LarixMediaBroadcaster\_tcp.xcframework), or variant with SRT or RIST support in addition to RTMP/RTSP (LarixMediaBroadcaster\_srt.xcframework or LarixMediaBroadcaster\_rist.xcframework for one of them or LarixMediaBroadcaster.xcframework for both).
+
+Add LarixMediaEncoder.xcfamework the same way. 
+
 ![Libraries](screenshots/libraries.png)
 
 
 ### Bridging header
-Create file YourProject-Brigding-Header.h and put following line to it
+Create file YourProject-Brigding-Header.h and put following lines to it
 
-`#import "mbl-iOS/mbl.h"`
+```
+#import <LarixMediaEncoder/LarixMediaEncoder.h>
+#import <LarixMediaBroadcaster/LarixMediaBrodcaster.h>
+```
 
 
 Then in project settings go to "Build Settings" tab, scroll down to "Swift Compiler - General" and specify above file name in "Objective-C Bridging Header" line. 
