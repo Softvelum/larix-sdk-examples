@@ -18,14 +18,16 @@ enum StreamerError: LocalizedError {
 }
 
 class StreamerSingleton {
+#if MBL
     static let sharedEngine = StreamerEngineProxy()
+#endif
     static let sharedQueue = DispatchQueue(label: "StreamingQueue")
     private init() {} // This prevents others from using the default '()' initializer for this class.
 }
 
 class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate,
  StreamerEngineDelegate {
-    
+
     weak var delegate: StreamerAppDelegate?
     var session: AVCaptureSession?
     private var cameraDevice: AVCaptureDevice?
@@ -37,16 +39,30 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
     private var streamFps: Int32 = 30
 
     private var workQueue = StreamerSingleton.sharedQueue
+#if MBL
     private var engine = StreamerSingleton.sharedEngine
+#endif
+#if WEBRTC
+    var webRtcEngine: RtcStreamEngine
+#endif
 
     private let PixelFormat_YUV = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
 
     override init() {
+#if WEBRTC
+        webRtcEngine = RtcStreamEngine()
+#endif
         super.init()
+#if MBL
         engine.setDelegate(self)
         engine.setInterleaving(true)
+#endif
+#if WEBRTC
+        webRtcEngine.delegate = self
+#endif
     }
     
+#if MBL
     // MARK: RTMP/RTSP connection
     func createConnection(config: ConnectionConfig) -> Int32 {
         return engine.createConnection(config)
@@ -61,9 +77,21 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
     func createConnection(config: RistConfig) -> Int32 {
         return engine.createRistConnection(config)
     }
+#endif
+
+#if WEBRTC
+    func createConnection(config: WebRtcConfig) -> Int32 {
+        return webRtcEngine.createWebRtcConnection(config)
+    }
+#endif
 
     func releaseConnection(id: Int32) {
+#if MBL
         engine.releaseConnection(id)
+#endif
+#if WEBRTC
+        webRtcEngine.releaseConnectionId(id)
+#endif
     }
     
     // MARK: Connection: notifications
@@ -104,6 +132,7 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
                 try self.setupVideoIn()
                 try self.setupVideoOut()
 
+#if MBL
                 self.engine.setAudioConfig(self.createAudioEncoderConfig())
                 self.engine.setVideoConfig(self.createVideoEncoderConfig())
                 
@@ -113,6 +142,10 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
                     self.delegate?.captureStateDidChange(state: CaptureState.CaptureStateFailed, status: CaptureStatus.CaptureStatusErrorVideoEncode)
                     return
                 }
+#endif
+#if WEBRTC
+                self.webRtcEngine.setVideoConfig(self.createVideoEncoderConfig())
+#endif
                 
                 // Only setup observers and start the session running if setup succeeded.
                 self.registerForNotifications()
@@ -291,9 +324,13 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
                 videoOut.setSampleBufferDelegate(nil, queue: nil)
             }
         }
+        #if MBL
         engine.stopVideoEncoding()
         engine.stopAudioEncoding()
-        
+        #endif
+        #if WEBRTC
+        webRtcEngine.stop()
+        #endif
         if session?.isRunning == true {
             session?.stopRunning()
         }
@@ -381,10 +418,19 @@ class Streamer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
             return
         }
         
+#if MBL
         if output is AVCaptureVideoDataOutput {
             engine.didOutputVideoSampleBuffer(sampleBuffer)
         } else if output is AVCaptureAudioDataOutput {
             engine.didOutputAudioSampleBuffer(sampleBuffer)
         }
+#endif
+#if WEBRTC
+        if output is AVCaptureVideoDataOutput {
+            webRtcEngine.didOutputVideoSampleBuffer(sampleBuffer)
+        } else if output is AVCaptureAudioDataOutput {
+            webRtcEngine.didOutputAudioSampleBuffer(sampleBuffer)
+        }
+#endif
     }
 }
