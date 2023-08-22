@@ -48,8 +48,8 @@ public class StreamerFragment extends Fragment implements Streamer.Listener {
     private Handler mHandler;
     private StreamerGL mStreamerGL;
 
-    private Streamer.CAPTURE_STATE mVideoCaptureState = Streamer.CAPTURE_STATE.FAILED;
-    private Streamer.CAPTURE_STATE mAudioCaptureState = Streamer.CAPTURE_STATE.FAILED;
+    private Streamer.CaptureState mVideoCaptureState = Streamer.CaptureState.FAILED;
+    private Streamer.CaptureState mAudioCaptureState = Streamer.CaptureState.FAILED;
 
     private String mCameraId;
     private Streamer.Size mSize;
@@ -135,31 +135,37 @@ public class StreamerFragment extends Fragment implements Streamer.Listener {
     };
 
     @Override
-    public void onAudioCaptureStateChanged(Streamer.CAPTURE_STATE state) {
-        Log.d(TAG, "onAudioCaptureStateChanged, state=" + state);
+    public void onAudioCaptureStateChanged(Streamer.CaptureState state) {
+        String message = "onAudioCaptureStateChanged, state=" + state;
+        Log.d(TAG, message);
+        showMessage(message);
         mAudioCaptureState = state;
         maybeCreateStream();
     }
 
     @Override
-    public void onVideoCaptureStateChanged(Streamer.CAPTURE_STATE state) {
-        Log.d(TAG, "onVideoCaptureStateChanged, state=" + state);
+    public void onVideoCaptureStateChanged(Streamer.CaptureState state) {
+        String message = "onVideoCaptureStateChanged, state=" + state;
+        Log.d(TAG, message);
+        showMessage(message);
         mVideoCaptureState = state;
         maybeCreateStream();
     }
 
     @Override
-    public void onConnectionStateChanged(int connectionId, Streamer.CONNECTION_STATE state, Streamer.STATUS status, JSONObject info) {
-        Log.d(TAG, "onConnectionStateChanged, connectionId=" + connectionId + ", state=" + state + ", status=" + status);
+    public void onConnectionStateChanged(int connectionId, Streamer.ConnectionState state, Streamer.Status status, JSONObject info) {
+        String message = "onConnectionStateChanged, connectionId=" + connectionId + ", state=" + state + ", status=" + status;
+        Log.d(TAG, message);
+        showMessage(message);
     }
 
     @Override
-    public void onRecordStateChanged(Streamer.RECORD_STATE state, Uri uri, Streamer.SAVE_METHOD method) {
+    public void onRecordStateChanged(Streamer.RecordState state, Uri uri, Streamer.SaveMethod method) {
         Log.d(TAG, "onRecordStateChanged, state=" + state);
     }
 
     @Override
-    public void onSnapshotStateChanged(Streamer.RECORD_STATE state, Uri uri, Streamer.SAVE_METHOD method) {
+    public void onSnapshotStateChanged(Streamer.RecordState state, Uri uri, Streamer.SaveMethod method) {
         Log.d(TAG, "onSnapshotStateChanged, state=" + state);
     }
 
@@ -170,8 +176,8 @@ public class StreamerFragment extends Fragment implements Streamer.Listener {
 
     private void maybeCreateStream() {
         if (mStreamerGL != null
-                && mVideoCaptureState == Streamer.CAPTURE_STATE.STARTED
-                && mAudioCaptureState == Streamer.CAPTURE_STATE.STARTED) {
+                && mVideoCaptureState == Streamer.CaptureState.STARTED
+                && mAudioCaptureState == Streamer.CaptureState.STARTED) {
             // audio+video encoding is running -> create stream
             ConnectionConfig conn = new ConnectionConfig();
             conn.uri = mUri;
